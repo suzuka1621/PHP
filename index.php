@@ -22,17 +22,24 @@ echo('<br>');
  ?>
 
 <?php
-// 変数 動的型付 Java, Visual Basic 静的型付
+// 変数 PHPは 動的型付 
+//Java, Visual Basicは静的型付
 
 // integer・・数字
 // string・・文字
 
-$test = 123;
+//定義する際、先頭は必ず英文字かアンダーバー
+$test_1 = 123;
+$test_2 = 456;
+
+//組み合わせる際はピリオドを打つ
+$test_3 = $test_1 . $test_2;
+
+
 //$test = 'テストです';
 
 // 配列 オブジェクト コレクション型
-Var_dump($test);
+Var_dump($test_3);
 echo('<br>');
 //echo $test;
 ?>
-
