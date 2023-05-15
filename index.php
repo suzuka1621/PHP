@@ -70,5 +70,36 @@ echo('<br>');
 const MAX = 'テスト';
 echo('<br>');
 echo MAX;
+echo('<br>');
+?>
+
+
+
+
+
+
+
+
+
+<?php
+//PHP 配列と連想配列 ※よく使う
+
+//配列 1行
+$array_1 = ['ああああ',2,3];
+
+$array_2 = [
+  ['赤','青','黄'],
+  ['緑','紫','黒']
+];
+
+// 配列は0から始まる
+// echo $array[1];
+
+// preで縦に表示できる
+echo '<pre>';
+var_dump($array_2);
+echo '</pre>';
+
+echo $array_2[1][1];
 
 ?>
