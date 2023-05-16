@@ -174,5 +174,25 @@ $array_member_3 = [
 ];
 
 echo $array_member_3['2kumi']['長友']['height'];
+echo('<br>');
+?>
+
+
+
+
+
+
+
+
+<?php
+// 演算子
+$test_1 = 7;
+$test_2 = 3;
+
+$test_3 = $test_1 % $test_2;
+
+echo('<br>');
+echo $test_3;
+
 
 ?>
