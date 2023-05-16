@@ -101,5 +101,32 @@ var_dump($array_2);
 echo '</pre>';
 
 echo $array_2[1][1];
+echo('<br>');
+?>
+
+
+
+
+
+
+
+
+
+
+<?php
+//PHP 連想配列 キーと値がセット
+
+$array_member = [
+ 'name' => '本田',
+ 'height' => 170,
+ 'hobby' => 'サッカー'
+];
+
+echo('<br>');
+echo $array_member['hobby'];
+
+echo '<pre>';
+var_dump($array_member);
+echo '</pre>';
 
 ?>
