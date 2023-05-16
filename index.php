@@ -193,6 +193,38 @@ $test_3 = $test_1 % $test_2;
 
 echo('<br>');
 echo $test_3;
+echo('<br>');
 
+
+?>
+
+
+
+
+
+
+
+
+
+
+
+<?php
+// 条件分岐
+
+//if (条件){
+  //条件が真なら実行
+//}
+
+$height = 90; //文字
+
+var_dump($height);
+
+echo('<br>');
+if ($height == 90){ //条件は数字
+  echo '身長は' . $height . 'cmです';
+}
+
+// == 一致
+// === 型も一致するか判定する ・string ・integerなど
 
 ?>
