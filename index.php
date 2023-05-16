@@ -344,5 +344,44 @@ foreach($members_2 as $member_1){
 }
 echo '<br>';
 
+?>
+
+
+
+
+
+
+
+
+
+
+<?php
+echo '<br>';
+// for文とwhile文
+
+// for 繰り返す数が決まっていたら
+// while 繰り返す数が決まっていなかったら
+
+// continue, break
+for($i = 0; $i < 10; $i++ ){
+  
+  if($i === 5){
+    //break; breakの場所で止まる
+    //continue; //continueの場所はスキップされる
+  } 
+  echo $i;
+}
+
+echo '<br>';
+
+$j = 0;
+while($j < 5){
+  echo $j;
+  $j++;
+}
+
+//do while 補足程度
+do{echo $j;}
+while($j < 5);
 
 ?>
