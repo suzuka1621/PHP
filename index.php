@@ -363,7 +363,7 @@ echo '<br>';
 // while 繰り返す数が決まっていなかったら
 
 // continue, break
-for($i = 0; $i < 10; $i++ ){
+for($i = 0; $i < 10; $i++ ){ //++はインプリメントといい、1つ足すという意味
   
   if($i === 5){
     //break; breakの場所で止まる
@@ -377,11 +377,64 @@ echo '<br>';
 $j = 0;
 while($j < 5){
   echo $j;
-  $j++;
+  $j++; 
 }
 
-//do while 補足程度
+// do while 補足程度
 do{echo $j;}
 while($j < 5);
+echo '<br>';
+?>
+
+
+
+
+
+
+
+
+
+
+<?php
+// switch文
+echo '<br>';
+
+$data = 1;
+
+//switchの場合 == ←2つ扱いになる
+
+switch($data){
+  case $data === 1: //←の書き方で型も一致しているかを判定できる
+    echo '1です';
+    break; //breakを入れないと流れてしまう
+  case 2:
+    echo '2です';
+    break;
+  case 3:
+    echo '3です';
+    break;
+  default:
+    echo '1-3ではありません';
+}
+
+// if文での書き方
+echo '<br>';
+if ($data === 1){
+  echo '1';
+}
+
+if ($data === 2){
+  echo '2';
+}
+
+if ($data === 3){
+  echo '3';
+}
+
+
+
+
+
+
 
 ?>
