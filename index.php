@@ -430,11 +430,77 @@ if ($data === 2){
 if ($data === 3){
   echo '3';
 }
+echo '<br>';
+?>
 
 
 
 
 
 
+
+
+<?php
+// 関数の考え方
+// 関数→function(機能)
+
+
+// ユーザー定義関数
+// function test(引数){
+//    処理
+//   return 戻り値
+// }
+
+
+
+//インプット引数 なし
+//アウトプット戻り値 なしの場合
+echo '<br>';
+function test(){
+  //処理
+  echo 'テスト';
+}
+
+test();
+
+
+// インプット引数 あり
+// アウトプット戻り値 なしの場合
+echo '<br>';
+$comment = 'コメント2';
+$comment3 = 'コメント3';
+
+function getComment($string){
+  echo $string;
+}
+
+getComment($comment3);
+
+
+// インプット引数 なし
+// アウトプット戻り値 ありの場合
+echo '<br>';
+function getNumberOfComment(){
+  return 5;
+}
+
+$commentNumber = getNumberOfComment();
+
+// echo getNumberOfComment();
+
+echo $commentNumber;
+
+
+//引数2つ
+//戻り値 ありの場合
+echo '<br>';
+function sumPrice($int1, $int2){
+  $int3 = $int1 + $int2;
+  return $int3;
+}
+
+$total = sumPrice(3,5);
+
+echo $total;
 
 ?>
