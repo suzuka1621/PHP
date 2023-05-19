@@ -502,5 +502,40 @@ function sumPrice($int1, $int2){
 $total = sumPrice(3,5);
 
 echo $total;
+echo '<br>';
+?>
+
+
+
+
+
+<?php
+// 組み込み関数 元々備わっている関数
+// http://www.php.net/manual/ja/funcref.php
+// ↑関数カンファレンス
+
+
+// 文字列の長さ
+echo '<br>';
+// マルチバイト
+// 日本語の場合 SJIS, UTF8
+// 現在UTF8が主流で、１文字3~6バイト
+$text = 'あいうえお';
+
+// echo strlen($text); //バイト数のカウント
+
+echo mb_strlen($text); //日本語の文字数をカウント
+
+
+// 文字列の置換
+echo '<br>';
+$str = '文字列を置換します';
+echo str_replace('置換','ちかん',$str);
+
+
+
+
+
+
 
 ?>
