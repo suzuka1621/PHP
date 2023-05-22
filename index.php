@@ -617,10 +617,35 @@ function checkPostalCode($str){
 var_dump(checkPostalCode($postalCode));
 
 //snakeCase 単語の区切りをアンダーバーで表示
-check_postal_code()
+//check_postal_code()
+
+?>
 
 
 
+
+
+
+
+
+<?php
+//変数のスコープ(有効範囲)
+echo '<br>';
+echo '<br>';
+
+$globalVariable = 'グローバル変数です';
+
+function checkScope($str){
+  $localVariable = 'ローカル変数です';
+  //global $globalVariable; ←の方法はあまり使わない
+  echo $str;
+}
+
+
+echo $globalVariable;
+
+echo '<br>';
+checkScope($globalVariable); //関数の呼び出し
 
 
 
