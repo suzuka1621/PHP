@@ -647,6 +647,36 @@ echo $globalVariable;
 echo '<br>';
 checkScope($globalVariable); //関数の呼び出し
 
+echo '<br>';
+?>
+
+
+
+
+
+
+
+
+<?php
+//ファイルの読み込み
+echo '<br>';
+require __DIR__ . '/common/common.php'; //←読み込みの書き方
+//今記述しているファイルから移動のパスを書く
+//もし階層が上ならば../でひとつ上の階層にいく必要がある
+
+
+//__DIR__ 現在のパスの絶対パスを表示することができる
+echo __DIR__; //DIRはディレクトリの略
+
+//__FILE__ DIRと同じく現在のファイルの場所までのありかを表示する
+echo __FILE__;
+
+echo $commonVariable;
+echo '<br>';
+commonTest();
+
+
+
 
 
 
