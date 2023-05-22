@@ -574,6 +574,7 @@ echo '<br>';
 //配列に関する関数
 echo '<br>';
 
+// 配列に配列を追加する
 $array = ['りんご','みかん'];
 
 array_push($array, 'ぶどう', 'なし'); //配列を追加
@@ -582,6 +583,7 @@ echo '<pre>';
 var_dump($array);
 echo '</pre>';
 
+?>
 
 
 
@@ -591,6 +593,31 @@ echo '</pre>';
 
 
 
+<?php
+//ユーザー定義関数
+//関数の命名 動詞＋名詞の組み合わせがおすすめ
+
+// 郵便番号チェック
+echo '<br>';
+$postalCode = '123-4567';
+
+//関数名の付け方
+//camelCase 最初の単語が小文字で、その後の単語ごとに先頭が大文字
+function checkPostalCode($str){
+  $replaced = str_replace('-','',$str);
+  $length = strlen($replaced);
+
+  var_dump($length);
+  if($length === 7){
+    return true;
+  }
+  return false;
+}
+
+var_dump(checkPostalCode($postalCode));
+
+//snakeCase 単語の区切りをアンダーバーで表示
+check_postal_code()
 
 
 
