@@ -1,4 +1,13 @@
 <?php
+
+//PHPのバージョン確認↓
+phpinfo();
+
+?>
+
+
+
+<?php
 //PHP書き方
 
 /*数字 と 文字
@@ -636,7 +645,7 @@ echo '<br>';
 $globalVariable = 'グローバル変数です';
 
 function checkScope($str){
-  $localVariable = 'ローカル変数です';
+  $str = 'ローカル変数です';
   //global $globalVariable; ←の方法はあまり使わない
   echo $str;
 }
@@ -646,7 +655,6 @@ echo $globalVariable;
 
 echo '<br>';
 checkScope($globalVariable); //関数の呼び出し
-
 echo '<br>';
 ?>
 
@@ -668,19 +676,11 @@ require __DIR__ . '/common/common.php'; //←読み込みの書き方
 //__DIR__ 現在のパスの絶対パスを表示することができる
 echo __DIR__; //DIRはディレクトリの略
 
-//__FILE__ DIRと同じく現在のファイルの場所までのありかを表示する
+//__FILE__ 現在のファイルの場所までのありかを表示する
 echo __FILE__;
 
 echo $commonVariable;
 echo '<br>';
 commonTest();
-
-
-
-
-
-
-
-
-
+echo '<br>';
 ?>
