@@ -740,3 +740,49 @@ echo '<br>';
 commonTest();
 echo '<br>';
 ?>
+
+
+
+
+
+
+
+
+
+
+<?php
+//フォーム関連
+//https←通信が暗号化されている
+
+echo '<br>';
+echo '<br>';
+//$test = 123;
+
+echo $t;
+phpinfo();
+//display_errorsの項目がoffになっているとエラーが表示されない。
+//↑をonにする方法
+//Configuration File (php.ini) Pathを見て設定ファイルの場所を確認する
+//その後、PCに入っているファイルまでアクセスし設定ファイルを見つけ、
+//設定が間違った場合為にコピーをしバックアップをとっておく
+//php.iniをVSコードで開く
+//コマンド(ctrl)+ Fでdisplay_errorsを探す
+//display_errors = Off をOnにする
+//MAMP(XAMPP)を再起動
+//エラーが表示されるようになる(Notice...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>
