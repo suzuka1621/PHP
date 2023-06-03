@@ -755,11 +755,12 @@ echo '<br>';
 //https←通信が暗号化されている
 
 echo '<br>';
-echo '<br>';
-//$test = 123;
+$test_test = 123;
 
-echo $t;
-phpinfo();
+echo $test_test;
+
+//エラー画面を表示させる方法
+//phpinfo(); //←phpの設定を確認できる
 //display_errorsの項目がoffになっているとエラーが表示されない。
 //↑をonにする方法
 //Configuration File (php.ini) Pathを見て設定ファイルの場所を確認する
@@ -771,6 +772,18 @@ phpinfo();
 //MAMP(XAMPP)を再起動
 //エラーが表示されるようになる(Notice...)
 
+
+echo '<br>';
+
+//exit ←処理を止める
+$test = 123;
+$test_2 = 456;
+
+echo $test;
+var_dump($test);
+exit; //変数の値を確認するときなどに使う
+echo '<br>';
+echo $test_2;
 
 
 
