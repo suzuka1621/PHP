@@ -1,7 +1,7 @@
 <?php
 
 //PHPのバージョン確認↓
-phpinfo();
+// phpinfo();
 
 ?>
 
@@ -58,12 +58,12 @@ $test_2 = 456;
 
 //組み合わせる際はピリオドを打つ
 $test_3 = $test_1 . $test_2;
-
+//変数を組み合わせると、数字の変数でも文字として扱われる
 
 //$test = 'テストです';
 
 // 配列 オブジェクト コレクション型
-echo('<br>');
+echo('<br>'); //'(<br>);で改行できる
 var_dump($test_3);
 echo('<br>');
 //echo $test;
@@ -82,11 +82,12 @@ echo('<br>');
 //PHP定数
 
 //定数 変わらない数・文字
-// constantの略
-const MAX = 'テスト';
+// const = constantの略
+const MAX = 'テスト'; //上書きはされない
 echo('<br>');
 echo MAX;
 echo('<br>');
+
 ?>
 
 
@@ -100,15 +101,15 @@ echo('<br>');
 <?php
 //PHP 配列と連想配列 ※よく使う
 
-//配列 1行
-$array_1 = ['ああああ',2,3];
+//配列 1行の場合
+$array_1 = ['ああああ',2,3]; //配列は[]で囲む
 
-$array_2 = [
+$array_2 = [ //多段階はかっこの中にさらにかっこを入れる
   ['赤','青','黄'],
   ['緑','紫','黒']
 ];
 
-// 配列は0から始まる
+// 配列は0から始まる→2つ目を取り出し合い場合は1を設定する
 // echo $array[1];
 
 // preで縦に表示できる
@@ -130,8 +131,9 @@ echo('<br>');
 
 
 <?php
-//PHP 連想配列 キーと値がセット
+//PHP 連想配列 キーと値(バリュー)がセット
 
+// 連想配列の記述は 'キー' => '値'
 $array_member = [
  'name' => '本田',
  'height' => 170,
@@ -146,9 +148,9 @@ var_dump($array_member);
 echo '</pre>';
 
 
-// 多段階
+// 多段階の場合
 $array_member_2 = [
-  '本田' => [
+  '本田' => [ //[]の中にキーと値を入れる
     'height' => 170,
     'hobby' => 'サッカー'
   ],
@@ -158,6 +160,7 @@ $array_member_2 = [
   ]
 ];
 
+//出力の仕方
 echo $array_member_2['香川']['height'];
 
 echo '<pre>';
@@ -200,8 +203,12 @@ echo('<br>');
 
 
 
+
+
 <?php
-// 演算子
+// 演算子 四則演算子(+,-,*,/,%)
+//       比較演算子(>,>=,+=,===,!==)
+//       論理演算子(and,&&,or,||,xor)
 $test_1 = 7;
 $test_2 = 3;
 
@@ -221,9 +228,11 @@ echo('<br>');
 
 
 
+
 <?php
 // 条件分岐
 
+//ifの書き方
 //if (条件){
   //条件が真なら実行
 //}
@@ -248,21 +257,29 @@ var_dump($height);
 //   echo '身長は' . $height . 'cmになります。';
 // }
 
+
+// == 値が一致していれば出力
+// === 値も型も一致するか判定している。値が一緒でも型が違えば出力できない
+// ・string ・integerなど
+
 echo('<br>');
 if ($height !== 90){ //型が同じかどうかも判定 
   echo '身長は90cmではありません。';
 }
 
 //データが入っているかどうか
-// isset empty is_null
+// isset empty is_null ←この構文で確認できる
 echo('<br>');
-$test = 1; //文字
+$test = 1;
 
-if(!empty($test)){
+if(!empty($test)){ //!emptyと先頭に!をつけている場合は否定の意味になる
   echo '変数は空ではありません';
 }
 
 // AND と OR
+// ANDは「〇〇かつ〇〇で記号の&&を記述」
+// ORは「〇〇または〇〇で記号の||を記述」
+
 $signal_1 = 'red';
 $signal_2 = 'yellow';
 
@@ -273,8 +290,7 @@ if ($signal_1 === 'red' || $signal_2 === 'blue'){
 
 
 //三項演算子
-//if else
-//条件 ? 真 : 偽
+//条件 ? 真 : 偽 ←記述方法
 
 $math = 80;
 echo('<br>');
@@ -306,10 +322,12 @@ if ($signal === 'blue'){
 }
 echo('<br>');
 
-// == 一致
-// === 型も一致するか判定する ・string ・integerなど
-
+//elseやif文の中にif文を書くと読みづらくなるので非推奨
+//if文単体で書くのが望ましい
 ?>
+
+
+
 
 
 
@@ -319,7 +337,7 @@ echo('<br>');
 
 <?php
 // foreach
-// 複数の値 foreach
+// 複数の値を展開したり表示したい場合にforeachを使う
 
 $members = [
   'name' => '本田',
@@ -328,8 +346,8 @@ $members = [
 ];
 
 // バリューのみ表示
-foreach($members as $member){
-  echo $member;
+foreach($members as $member){ //左複数形、右単数系で書くのが分かりやすい
+  echo $member; //foreachで記述した右側が出力される
 }
 
   echo '<br>';
@@ -353,8 +371,9 @@ $members_2 = [
   ]
 ];
 
+//foreachの中にforeachを書く。 右側の変数をもう1度開くイメージ
 foreach($members_2 as $member_1){
-  foreach($member_1 as $member => $value){
+  foreach($member_1 as $member => $value){ //キーとバリュー両方取り出し
   echo $member . 'は' . $value . 'です';
   }
 }
@@ -375,12 +394,13 @@ echo '<br>';
 echo '<br>';
 // for文とwhile文
 
-// for 繰り返す数が決まっていたら
-// while 繰り返す数が決まっていなかったら
+//for文の記述方法
+// for(変数 = 0;   < 10;     変数++)
+        //初期値   //条件   //インプリメント
 
-// continue, break
 for($i = 0; $i < 10; $i++ ){ //++はインプリメントといい、1つ足すという意味
-  
+
+// continue, break文
   if($i === 5){
     //break; breakの場所で止まる
     //continue; //continueの場所はスキップされる
@@ -390,16 +410,22 @@ for($i = 0; $i < 10; $i++ ){ //++はインプリメントといい、1つ足す�
 
 echo '<br>';
 
-$j = 0;
+// while文の記述方法
+$j = 0; //←外に変数を作る
 while($j < 5){
   echo $j;
   $j++; 
 }
 
-// do while 補足程度
+// 2つの文の使い分け↓
+// for 繰り返す数が決まっていたら
+// while 繰り返す数が決まっていなかったら
+
+// do while文 補足程度
 do{echo $j;}
 while($j < 5);
 echo '<br>';
+
 ?>
 
 
@@ -413,6 +439,7 @@ echo '<br>';
 
 <?php
 // switch文
+// switch文は注意する点もあるため、if文の方が好ましい
 echo '<br>';
 
 $data = 1;
@@ -424,12 +451,12 @@ switch($data){
     echo '1です';
     break; //breakを入れないと流れてしまう
   case 2:
-    echo '2です';
+    echo '2です'; //←の書き方では==扱いになる('型は判定しない')
     break;
   case 3:
     echo '3です';
     break;
-  default:
+  default: //上記以外の場合の条件分岐
     echo '1-3ではありません';
 }
 
@@ -456,6 +483,8 @@ echo '<br>';
 
 
 
+
+
 <?php
 // 関数の考え方
 // 関数→function(機能)
@@ -463,8 +492,8 @@ echo '<br>';
 
 // ユーザー定義関数
 // function test(引数){
-//    処理
-//   return 戻り値
+//    処理    ↑関数名
+//   return 戻り値;
 // }
 
 
@@ -525,6 +554,11 @@ echo '<br>';
 
 
 
+
+
+
+
+
 <?php
 // 組み込み関数 元々備わっている関数
 // http://www.php.net/manual/ja/funcref.php
@@ -533,9 +567,9 @@ echo '<br>';
 
 // 文字列の長さ
 echo '<br>';
-// マルチバイト
-// 日本語の場合 SJIS, UTF8
-// 現在UTF8が主流で、１文字3~6バイト
+// マルチバイト←アルファベットや数字以外で表記される文字列のこと
+// 日本語の場合 SJIS, UTF-8
+// 現在UTF-8が主流で、１文字3~6バイト
 $text = 'あいうえお';
 
 // echo strlen($text); //バイト数のカウント
@@ -554,6 +588,8 @@ echo '<br>';
 $str_2 = '指定文字列で、分割します';
 
 var_dump(explode('、', $str_2));
+// 配列として返ってくる。
+
 
 // implode ←文字列をくっつける役割を持つ
 
@@ -586,6 +622,8 @@ echo '<br>';
 
 
 
+
+
 <?php
 //配列に関する関数
 echo '<br>';
@@ -600,6 +638,7 @@ var_dump($array);
 echo '</pre>';
 
 ?>
+
 
 
 
@@ -644,6 +683,8 @@ var_dump(checkPostalCode($postalCode));
 
 
 
+
+
 <?php
 //変数のスコープ(有効範囲)
 echo '<br>';
@@ -672,8 +713,13 @@ echo '<br>';
 
 
 
+
+
 <?php
 //ファイルの読み込み
+//require←間違いがあるとエラーが表示され、そこで処理が止まる
+//include←間違いがあった際、警告が出るが処理はそのまま実行される
+
 echo '<br>';
 require __DIR__ . '/common/common.php'; //←読み込みの書き方
 //今記述しているファイルから移動のパスを書く
@@ -683,8 +729,11 @@ require __DIR__ . '/common/common.php'; //←読み込みの書き方
 //__DIR__ 現在のパスの絶対パスを表示することができる
 echo __DIR__; //DIRはディレクトリの略
 
+echo '<br>';
+
 //__FILE__ 現在のファイルの場所までのありかを表示する
 echo __FILE__;
+echo '<br>';
 
 echo $commonVariable;
 echo '<br>';
