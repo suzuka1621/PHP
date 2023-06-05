@@ -1,10 +1,15 @@
 <?php
 
+session_start(); //←この設定でsessionを使うことができる
+
+// クリックジャッキング対策
+header('X-FRAME-OPTIONS:DENY');
+
 // your_nameが？の後に入っていない場合、Noticeのエラー文が出てしまうので、それを消す
-if(!empty($_POST)){
+if(!empty($_SESSION)){
 // GET(POST)の中身を見る方法
   echo '<pre>';
-  var_dump($_POST); //←[]にキーを入力すると中身が見られる
+  var_dump($_SESSION); //←[]にキーを入力すると中身が見られる
   echo '</pre>';
 // $_で書いている変数をスーパーグローバル変数と呼ぶ
 // phpの場合は9種類ある
@@ -12,6 +17,13 @@ if(!empty($_POST)){
 // 今回の場合、name="your_name"がキーになっていて
 // 入力された値がvalue="送信"
 }
+
+//XSS(Cross-Site Scripting)対策
+function h($str)
+{
+  return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}
+
 
 // 解説
 // inputに </input>と書いているのですが、
@@ -25,6 +37,8 @@ if(!empty($_POST)){
 // 入力、確認、完了画面の作成
 // 3つを分ける場合→input.php, confirm.php, thanks.php
 // input.php←今回は一つのファイルで全てを入れる
+// CSRF 偽物のinput.php 悪意のあるページにアクセスするとことになる。
+// 自分が意図しない操作を勝手に行なってしまう。
 
 $pageFlag = 0;
 
@@ -43,41 +57,57 @@ if(!empty($_POST['btn_submit'])){
 <body>
 
 <?php if($pageFlag === 1) : ?>
+<?php if($_POST['csrf'] === $_SESSION['csrfToken']) :
+  //↑合言葉(トークンが合っているかの判定) ?>
 <form method="POST" action="input.php">
 氏名
-<?php echo $_POST['your_name'] ;?>
+<?php echo h($_POST['your_name']) ;?>
 <br>
 メールアドレス
-<?php echo $_POST['email'] ;?>
+<?php echo h($_POST['email']) ;?>
 <br>
 <input type="submit" name="back" value="戻る"> 
 <input type="submit" name="btn_submit" value="送信する">
-<input type="hidden" name="your_name" value="<?php echo $_POST['your_name'] ;?>">
-<input type="hidden" name="email" value="<?php echo $_POST['email'] ;?>">
+<input type="hidden" name="your_name" value="<?php echo h($_POST['your_name']) ;?>">
+<input type="hidden" name="email" value="<?php echo h($_POST['email']) ;?>">
+<input type="hidden" name="csrf" value="<?php echo h($_POST['csrf']) ;?>">
 </form>
 <?php endif; ?>
+<?php endif; ?>
+
 
 <?php if($pageFlag === 2) : ?>
+<?php if($_POST['csrf'] === $_SESSION['csrfToken']) :?>
 送信が完了しました。
+
+<?php unset($_SESSION['csrfToken']);
+  //↑合言葉(トークン)の削除 ?>
+<?php endif; ?>
 <?php endif; ?>
 
 
 <?php if($pageFlag === 0) : ?>
+<?php
+if(!isset($_SESSION[('csrfToken')])){ //issetは中身があるか判定する
+  $csrfToken = bin2hex(random_bytes(32));  //引数の数字は24でもOK。bin2hexを入れることで16進数に変換できうまく表記ができるようになる。
+  $_SESSION['csrfToken'] = $csrfToken;
+} 
+
+$token = $_SESSION['csrfToken'];
+?>
 
 <form method="POST" action="input.php">
 氏名
-<input type="text" name="your_name" value="<?php if(!empty($_POST['your_name'])){echo $_POST['your_name'] ;} ?>">
+<input type="text" name="your_name" value="<?php if(!empty($_POST['your_name'])){echo h($_POST['your_name']) ;} ?>">
 <br>
 メールアドレス
-<input type="email" name="email" value="<?php if(!empty($_POST['email'])){echo $_POST['email'] ;} ?>">
+<input type="email" name="email" value="<?php if(!empty($_POST['email'])){echo h($_POST['email']) ;} ?>">
 <br>
 <input type="submit" name="btn_confirm" value="確認する">
+<input type="hidden" name="csrf" value="<?php echo $token; ?>">
 
 </form>
 <?php endif; ?>
-
-
-
 
 
 <body>
