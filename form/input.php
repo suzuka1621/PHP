@@ -2,6 +2,9 @@
 
 session_start(); //←この設定でsessionを使うことができる
 
+require 'validation.php';
+
+
 // クリックジャッキング対策
 header('X-FRAME-OPTIONS:DENY');
 
@@ -41,8 +44,9 @@ function h($str)
 // 自分が意図しない操作を勝手に行なってしまう。
 
 $pageFlag = 0;
+$errors = validation($_POST);
 
-if(!empty($_POST['btn_confirm'])){
+if(!empty($_POST['btn_confirm']) && empty($errors)){
   $pageFlag = 1;
 }
 if(!empty($_POST['btn_submit'])){
@@ -122,6 +126,16 @@ if(!isset($_SESSION[('csrfToken')])){ //issetは中身があるか判定する
 
 $token = $_SESSION['csrfToken'];
 ?>
+
+<?php if(!empty($errors) && !empty($_POST['btn_confirm'])) : ?>
+<?php echo '<ul>' ;?>
+ <?php 
+   foreach($errors as $error) {
+      echo '<li>' . $error . '</li>' ;
+   }
+?>
+<?php echo '</ul>' ;?>
+<?php endif ;?>
 
 <form method="POST" action="input.php">
 氏名
